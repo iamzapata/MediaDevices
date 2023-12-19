@@ -1,5 +1,5 @@
 import { SyntheticEvent, useRef } from "react"
-import { useTrackRenderInfo } from "../../hooks/useRenderInfo"
+import { useTrackRenderInfo } from "../../../../hooks/useRenderInfo"
 import { useSetVideoStream } from "./hooks/useSetVideoStream"
 import {
   onVideoErrorHandler,

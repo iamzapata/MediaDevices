@@ -1,4 +1,4 @@
-import { useTrackScreenView } from "../../hooks/useTrackScreenView"
+import { useTrackScreenView } from "../../../hooks/useTrackScreenView"
 
 export const CameraError = () => {
   useTrackScreenView(CameraError.displayName)

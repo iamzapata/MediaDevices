@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { CameraView } from "./Camera.view"
 import { useCameraModel } from "./camera.model"
 import { OverlaySpinner } from "../../components/ui/OverlaySpinner"
-import { CameraScreenNotAvailable } from "./CameraStreamNotAvailable"
-import { CameraError } from "./CameraError.component"
+import { CameraScreenNotAvailable } from "./components/CameraStreamNotAvailable"
+import { CameraError } from "./components/CameraError.component"
 
 export const CameraContainer = () => {
   const [isCameraLoading, setIsCameraLoading] = useState(true)

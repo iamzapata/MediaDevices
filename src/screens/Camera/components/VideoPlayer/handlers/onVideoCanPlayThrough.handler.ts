@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react"
-import { AnalyticsTrackerService } from "../../../services/AnalyticsTracker"
-import { EVENT_NAMES } from "../../../services/AnalyticsTracker/eventNames"
+import { AnalyticsTrackerService } from "../../../../../services/AnalyticsTracker"
+import { EVENT_NAMES } from "../../../../../services/AnalyticsTracker/eventNames"
 
 export const onVideoCanPlayThrough = (
   event: SyntheticEvent<HTMLVideoElement, Event>

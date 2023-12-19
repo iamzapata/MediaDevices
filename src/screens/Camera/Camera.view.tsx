@@ -1,6 +1,8 @@
-import { VideoPlayer } from "../../components/VideoPlayer"
+import { VideoPlayer } from "./components/VideoPlayer"
 import { useTrackScreenView } from "../../hooks/useTrackScreenView"
-import { ScreenNames } from "../types"
+import { DesktopOverlay } from "./overlays/Desktop"
+import { MobileOverlay } from "./overlays/Mobile/Mobile.overlay"
+import { useIsMobileDevice } from "../../hooks/useIsMobileDevice"
 import styles from "./Camera.module.css"
 
 interface CameraViewProps {
@@ -8,11 +10,32 @@ interface CameraViewProps {
   setIsCameraLoading: (isLoading: boolean) => void
 }
 export const CameraView = ({ stream, setIsCameraLoading }: CameraViewProps) => {
-  useTrackScreenView(ScreenNames.CAMERA_VIEW)
+  const { isMobileDevice } = useIsMobileDevice()
+  const isDesktop = !isMobileDevice
+
+  useTrackScreenView(CameraView.displayName)
 
   return (
     <div className={styles.CameraView}>
-      <VideoPlayer stream={stream} setIsCameraLoading={setIsCameraLoading} />
+      {isMobileDevice && (
+        <MobileOverlay>
+          <VideoPlayer
+            stream={stream}
+            setIsCameraLoading={setIsCameraLoading}
+          />
+        </MobileOverlay>
+      )}
+
+      {isDesktop && (
+        <DesktopOverlay>
+          <VideoPlayer
+            stream={stream}
+            setIsCameraLoading={setIsCameraLoading}
+          />
+        </DesktopOverlay>
+      )}
     </div>
   )
 }
+
+CameraView.displayName = "CameraView"
