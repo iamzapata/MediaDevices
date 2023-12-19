@@ -1,0 +1,10 @@
+.CameraView {
+  /*
+     * position is set to relative so child video element
+     * can be positioned absolute to fill the entire parent container
+     */
+  position: relative;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

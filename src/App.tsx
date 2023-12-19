@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+import { Tabs } from "./components/ui/Tabs"
+import { CameraContainer } from "./screens/Camera"
+import { MediaDevicesInfoContainer } from "./screens/MediaDevicesInfo"
+import { ActivityTraceContainer } from "./screens/ActivityTracer"
+import { AnalyticsTrackerService } from "./services/AnalyticsTracker"
+import { EVENT_NAMES } from "./services/AnalyticsTracker/eventNames"
+import { keyMirror } from "./lib/keyMirror"
+import { useIsMobileDevice } from "./hooks/useIsMobileDevice"
+import { DesktopLayout } from "./components/layouts/Desktop"
+import { MobileLayout } from "./components/layouts/Mobile"
+
+const TabNames = keyMirror({
+  Camera: null,
+  DevicesInfo: null,
+  ActivityTace: null
+})
 
 function App() {
-  const [count, setCount] = useState(0)
+  AnalyticsTrackerService.track(EVENT_NAMES.CLIENT_STARTED)
+
+  const { isMobileDevice } = useIsMobileDevice()
+
+  const tabs = [
+    { label: TabNames.Camera, content: CameraContainer },
+    { label: TabNames.DevicesInfo, content: MediaDevicesInfoContainer },
+    { label: TabNames.ActivityTace, content: ActivityTraceContainer }
+  ]
+
+  if (isMobileDevice) {
+    return (
+      <MobileLayout>
+        <Tabs tabs={tabs} />
+      </MobileLayout>
+    )
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <DesktopLayout>
+      <Tabs tabs={tabs} />
+    </DesktopLayout>
   )
 }
 
