@@ -2,12 +2,12 @@ import { useState } from "react"
 import { UserMediaService } from "../../services/UserMedia"
 
 export const useCameraModel = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isStreamLoading, setIsStreamLoading] = useState<boolean>(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [error, setError] = useState<Error | null>(null)
 
   const getStream = async () => {
-    setIsLoading(true)
+    setIsStreamLoading(true)
 
     try {
       const stream = await UserMediaService.getStream({
@@ -15,7 +15,7 @@ export const useCameraModel = () => {
         audio: true
       })
 
-      setIsLoading(false)
+      setIsStreamLoading(false)
 
       if (!stream) {
         // Depending on the product requirements,
@@ -26,7 +26,7 @@ export const useCameraModel = () => {
 
       setStream(stream)
     } catch (error) {
-      setIsLoading(false)
+      setIsStreamLoading(false)
 
       if (error instanceof Error) {
         setError(error)
@@ -48,7 +48,7 @@ export const useCameraModel = () => {
   return {
     stream,
     error,
-    isLoading,
+    isStreamLoading,
     getStream,
     stopStream
   }

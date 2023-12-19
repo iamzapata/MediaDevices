@@ -22,9 +22,5 @@ export const useTrackScreenView = (
 
     AnalyticsTrackerService.track(eventName, payload)
 
-    return () => {
-      const eventName = EVENT_NAMES.SCREEN_HIDDEN
-      AnalyticsTrackerService.track(eventName, payload)
-    }
   }, [isNotFirstRender, screenName])
 }

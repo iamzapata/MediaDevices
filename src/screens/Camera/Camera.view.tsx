@@ -4,14 +4,15 @@ import { ScreenNames } from "../types"
 import styles from "./Camera.module.css"
 
 interface CameraViewProps {
-  stream: MediaStream
+  stream: MediaStream | null
+  setIsCameraLoading: (isLoading: boolean) => void
 }
-export const CameraView = ({ stream }: CameraViewProps) => {
+export const CameraView = ({ stream, setIsCameraLoading }: CameraViewProps) => {
   useTrackScreenView(ScreenNames.CAMERA_VIEW)
 
   return (
     <div className={styles.CameraView}>
-      <VideoPlayer stream={stream} />
+      <VideoPlayer stream={stream} setIsCameraLoading={setIsCameraLoading} />
     </div>
   )
 }

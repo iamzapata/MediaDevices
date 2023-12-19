@@ -1,11 +1,19 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { CameraView } from "./Camera.view"
 import { useCameraModel } from "./camera.model"
-import { AnalyticsTrackerService } from "../../services/AnalyticsTracker"
-import { EVENT_NAMES } from "../../services/AnalyticsTracker/eventNames"
+import { OverlaySpinner } from "../../components/ui/OverlaySpinner"
+import { CameraScreenNotAvailable } from "./CameraStreamNotAvailable"
+import { CameraError } from "./CameraError.component"
 
 export const CameraContainer = () => {
-  const { stream, error, isLoading, getStream, stopStream } = useCameraModel()
+  const [isCameraLoading, setIsCameraLoading] = useState(true)
+  const { stream, error, isStreamLoading, getStream, stopStream } =
+    useCameraModel()
+
+  const isLoading = isStreamLoading || isCameraLoading
+  const isNotLoading = !isLoading
+  const displayError = error && isNotLoading
+  const displayStreamNotAvailable = !stream && isNotLoading
 
   useEffect(() => {
     if (stream) {
@@ -19,23 +27,17 @@ export const CameraContainer = () => {
     }
   }, [getStream, stopStream])
 
-  if (isLoading) {
-    AnalyticsTrackerService.track(EVENT_NAMES.CAMERA_SCREEN_LOADING)
-
-    return <div>Loading...</div>
+  if (displayError) {
+    return <CameraError />
   }
 
-  if (error) {
-    AnalyticsTrackerService.track(EVENT_NAMES.CAMERA_SCREEN_ERROR)
-
-    return <div>{error.message}</div>
+  if (displayStreamNotAvailable) {
+    return <CameraScreenNotAvailable />
   }
 
-  if (!stream) {
-    AnalyticsTrackerService.track(EVENT_NAMES.CAMERA_SCREEN_NO_STREAM)
-
-    return <div>Stream is not available</div>
-  }
-
-  return <CameraView stream={stream} />
+  return (
+    <OverlaySpinner isLoading={isLoading}>
+      <CameraView stream={stream} setIsCameraLoading={setIsCameraLoading} />
+    </OverlaySpinner>
+  )
 }
