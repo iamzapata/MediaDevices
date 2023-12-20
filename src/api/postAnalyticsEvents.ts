@@ -1,4 +1,4 @@
-import { AnalyticsEvent } from "../services/AnalyticsTracker/types"
+import { AnalyticsEvent } from "../services/AnalyticsTrackerService/types"
 
 export function postAnalyticsEvents(events: AnalyticsEvent[]) {
   try {

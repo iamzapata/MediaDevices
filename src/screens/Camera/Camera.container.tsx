@@ -16,6 +16,11 @@ export const CameraContainer = () => {
   const displayStreamNotAvailable = !stream && isNotLoading
 
   useEffect(() => {
+    if (error) {
+      stopStream()
+      return
+    }
+
     if (stream) {
       return
     }
@@ -25,7 +30,9 @@ export const CameraContainer = () => {
     return () => {
       stopStream()
     }
-  }, [getStream, stopStream])
+  }, [getStream, stopStream, error, stream])
+
+  console.warn({ displayError })
 
   if (displayError) {
     return <CameraError />

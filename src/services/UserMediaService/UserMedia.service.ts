@@ -9,8 +9,8 @@ import {
   handleApplyConstraintsError
 } from "./errorHandling"
 
-import { AnalyticsTrackerService } from "../AnalyticsTracker"
-import { EVENT_NAMES } from "../AnalyticsTracker/eventNames"
+import { AnalyticsTrackerService } from "../AnalyticsTrackerService"
+import { EVENT_NAMES } from "../AnalyticsTrackerService/eventNames"
 
 const UserMediaService = {
   /*

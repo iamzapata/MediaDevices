@@ -1,6 +1,6 @@
-import { AnalyticsEvent } from "../AnalyticsTracker/types"
+import { AnalyticsEvent } from "../AnalyticsTrackerService/types"
 
-const ApplicationsLogger = {
+const ApplicationLoggerService = {
   logEvent: (event: AnalyticsEvent) => {
     console.groupCollapsed(
       `%c${event.name}`,
@@ -15,4 +15,4 @@ const ApplicationsLogger = {
   }
 }
 
-export { ApplicationsLogger }
+export { ApplicationLoggerService }

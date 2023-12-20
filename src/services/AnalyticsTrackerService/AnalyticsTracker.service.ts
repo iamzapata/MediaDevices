@@ -1,6 +1,6 @@
 import { AnalyticsEvent, AnalyticsEventPayload } from "./types"
 import { AnalyticsEventName, EVENT_NAMES } from "./eventNames"
-import { ApplicationsLogger } from "../AppliationLogger"
+import { ApplicationLoggerService } from "../AppliationLoggerService"
 import { API } from "../../api"
 import { keyMirror } from "../../lib/keyMirror"
 
@@ -25,7 +25,7 @@ function diffInMilliseconds(end: Date | undefined, start: Date): number {
 
 const AnalyticsTrackerService = {
   logEvent(event: Event) {
-    ApplicationsLogger.logEvent(event)
+    ApplicationLoggerService.logEvent(event)
   },
 
   onUnhandledRejectionHandler(error: Error) {
@@ -108,7 +108,7 @@ const AnalyticsTrackerService = {
 
       eventQueue.add(event)
 
-      ApplicationsLogger.logEvent(event)
+      ApplicationLoggerService.logEvent(event)
     } catch (error) {
       console.error(error)
       // log with Sentry

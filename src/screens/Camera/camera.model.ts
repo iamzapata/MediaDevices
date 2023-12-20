@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { UserMediaService } from "../../services/UserMedia"
+import { UserMediaService } from "../../services/UserMediaService"
 
 export const useCameraModel = () => {
   const [isStreamLoading, setIsStreamLoading] = useState<boolean>(false)
