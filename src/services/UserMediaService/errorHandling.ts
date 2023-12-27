@@ -1,3 +1,5 @@
+import { AnalyticsTrackerService } from "../AnalyticsTrackerService"
+
 export function handleGetMediaDevicesError(error: Error) {
   switch (error.name) {
     case "NotFoundError":
@@ -22,26 +24,35 @@ export function handleGetMediaDevicesError(error: Error) {
 }
 
 export function handleGetUserMediaError(error: Error) {
+  const { name, message } = error
+
+  let errorMessage = ""
+
   switch (error.name) {
     case "NotFoundError":
-      console.log("No media devices found.")
+      errorMessage = `No media devices found. (${message})`
       break
     case "NotReadableError":
-      console.log("Couldn't access your media devices.")
+      errorMessage = `Couldn't access your media devices. (${message})`
       break
     case "OverconstrainedError":
-      console.log("Constraints don't match any installed media device.")
+      errorMessage = `Constraints don't match any avaiable in media device. (${message})`
       break
     case "NotAllowedError":
-      console.log("Permission to access media devices denied.")
+      errorMessage = `Permission to access media devices denied. (${message})`
       break
     case "SecurityError":
-      console.log("Media devices not allowed to access.")
+      errorMessage = `Media devices not allowed to access. (${message})`
       break
     default:
-      console.log("Unknown Error")
+      errorMessage = `Unknown Error. (${message})`
       break
   }
+
+  AnalyticsTrackerService.track("GET_USER_MEDIA_ERROR", {
+    name,
+    errorMessage
+  })
 }
 
 export function handleStopTracksError(error: Error) {

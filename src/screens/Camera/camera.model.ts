@@ -1,27 +1,34 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { UserMediaService } from "../../services/UserMediaService"
+import { ApplicationLoggerService } from "../../services/AppliationLoggerService"
+import { useAsyncError } from "../../hooks/useAsyncError"
 
-export const useCameraModel = () => {
+export class NoStreamError extends Error {
+  constructor(stream: unknown) {
+    super(`Stream is not valid: ${stream}`)
+    this.name = "NoStreamError"
+  }
+}
+
+interface CameraModelParams {
+  constraints: MediaStreamConstraints
+}
+export const useCameraModel = ({ constraints }: CameraModelParams) => {
+  const throwAsyncError = useAsyncError()
+
   const [isStreamLoading, setIsStreamLoading] = useState<boolean>(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
-  const [error, setError] = useState<Error | null>(null)
 
-  const getStream = async () => {
+  const getStream = useCallback(async () => {
     setIsStreamLoading(true)
 
     try {
-      const stream = await UserMediaService.getStream({
-        video: true,
-        audio: true
-      })
+      const stream = await UserMediaService.getStream(constraints)
 
       setIsStreamLoading(false)
 
       if (!stream) {
-        // Depending on the product requirements,
-        // we may want to throw an error or emit an event in order to adapt
-        // the UI to the current state of the application.
-        throw new Error("Stream not found")
+        throw new NoStreamError(stream)
       }
 
       setStream(stream)
@@ -29,25 +36,22 @@ export const useCameraModel = () => {
       setIsStreamLoading(false)
 
       if (error instanceof Error) {
-        setError(error)
+        ApplicationLoggerService.logError(error)
       }
 
-      console.error(error)
-
-      // call Sentry or other error tracking service
+      throwAsyncError(error as Error)
     }
-  }
+  }, [constraints, throwAsyncError])
 
-  const stopStream = () => {
+  const stopStream = useCallback(() => {
     if (stream) {
       UserMediaService.stopStream(stream)
       setStream(null)
     }
-  }
+  }, [stream])
 
   return {
     stream,
-    error,
     isStreamLoading,
     getStream,
     stopStream

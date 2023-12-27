@@ -8,9 +8,21 @@ import {
   handleGetCurrentTrackSettings,
   handleApplyConstraintsError
 } from "./errorHandling"
+import {
+  requestMediaPermissions,
+  MediaPermissionsError
+} from "./requestMediaPermissions"
 
 import { AnalyticsTrackerService } from "../AnalyticsTrackerService"
 import { EVENT_NAMES } from "../AnalyticsTrackerService/eventNames"
+import { SentryService } from "../SentryService"
+
+class GetUserMediaError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "GetUserMediaError"
+  }
+}
 
 const UserMediaService = {
   /*
@@ -59,6 +71,8 @@ const UserMediaService = {
 
   getStream: async (constraints: MediaStreamConstraints) => {
     try {
+      await requestMediaPermissions(constraints)
+
       const stream = await navigator.mediaDevices.getUserMedia(constraints)
 
       AnalyticsTrackerService.track(EVENT_NAMES.USER_MEDIA_STREAM, {
@@ -73,11 +87,21 @@ const UserMediaService = {
         error
       })
 
-      if (error instanceof Error) {
-        handleGetUserMediaError(error)
+      SentryService.captureException(error as Error)
+
+      handleGetUserMediaError(error as Error)
+
+      if (error instanceof MediaPermissionsError) {
+        AnalyticsTrackerService.track(EVENT_NAMES.MEDIA_PERMISSIONS_ERROR, {})
+        throw error
       }
 
-      // send to Sentry or other error tracking service
+      if (error instanceof Error) {
+        AnalyticsTrackerService.track(EVENT_NAMES.GET_USER_MEDIA_ERROR, {})
+        throw new GetUserMediaError(error.message)
+      }
+
+      throw error
     }
   },
 
@@ -210,8 +234,6 @@ const UserMediaService = {
       if (error instanceof Error) {
         handleStopTracksError(error)
       }
-
-      // send to Sentry or other error tracking service
     }
   },
 

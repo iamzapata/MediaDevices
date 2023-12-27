@@ -12,6 +12,10 @@ const ApplicationLoggerService = {
     }
 
     console.groupEnd()
+  },
+
+  logError: (error: Error) => {
+    console.error("%c [error]", "color: red; font-weight: bold;", {error})
   }
 }
 

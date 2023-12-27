@@ -9,15 +9,3 @@ export function keyMirror<T extends Record<PropertyKey, unknown>>(
   }
   return mirrored as { [K in keyof T]: K }
 }
-
-if (import.meta.env.DEV) {
-  const ACTIONS = keyMirror({
-    CREATE_ITEM: null,
-    UPDATE_ITEM: null,
-    DELETE_ITEM: null
-  })
-
-  console.log("keyMirror example:")
-
-  console.table(ACTIONS)
-}
