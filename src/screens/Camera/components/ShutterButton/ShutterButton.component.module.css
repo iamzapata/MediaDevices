@@ -1,0 +1,39 @@
+.ShutterButtonWrapper {
+  position: relative;
+  border: solid 2px var(--white-a12);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.ShutterButton::after {
+  content: " ";
+  position: absolute;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-color: var(--white-a12);
+  border: transparent;
+  border-radius: 50%;
+}
+
+.ShutterButton {
+  border: transparent;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: var(--black-a7);
+  color: var(--white-a12);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  transition: transform 0.1s;
+}
+
+.ShutterButton:active {
+  transform: scale(0.95);
+}

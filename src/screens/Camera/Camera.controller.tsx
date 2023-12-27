@@ -1,7 +1,8 @@
-import { OverlaySpinner } from "@ui/OverlaySpinner"
-import { useEffect, useState } from "react"
-import { useCameraModel } from "./camera.model"
-import { CameraView } from "./Camera.view"
+import { OverlaySpinner } from "@ui/OverlaySpinner";
+import { useEffect, useState } from "react";
+import { useCameraModel } from "./camera.model";
+import { CameraView } from "./Camera.view";
+
 
 const constraints = {
   video: true,
@@ -9,15 +10,27 @@ const constraints = {
 }
 
 export const CameraController = () => {
+  const [paused, setPaused] = useState(false)
   const [isCameraLoading, setIsCameraLoading] = useState(true)
   const { stream, isStreamLoading, getStream, stopStream } = useCameraModel({
     constraints
   })
 
+  const displayStream = stream || paused
+
   const isLoading = isStreamLoading || (!!stream && isCameraLoading)
 
+  const handlePauseStream = () => {
+    stopStream()
+    setPaused(true)
+  }
+
+  const handleResumeStream = () => {
+    setPaused(false)
+  }
+
   useEffect(() => {
-    if (stream) {
+    if (stream || paused) {
       return
     }
 
@@ -26,12 +39,18 @@ export const CameraController = () => {
     return () => {
       stopStream()
     }
-  }, [getStream, stopStream, stream])
+  }, [getStream, stopStream, stream, paused])
 
   return (
     <OverlaySpinner isLoading={isLoading}>
-      {stream && (
-        <CameraView stream={stream} setIsCameraLoading={setIsCameraLoading} />
+      {displayStream && (
+        <CameraView
+          stream={stream}
+          setIsCameraLoading={setIsCameraLoading}
+          handlePauseStream={handlePauseStream}
+          handleResumeStream={handleResumeStream}
+          isPaused={paused}
+        />
       )}
     </OverlaySpinner>
   )

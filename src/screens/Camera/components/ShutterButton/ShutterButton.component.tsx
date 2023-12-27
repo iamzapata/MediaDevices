@@ -13,11 +13,13 @@ export const ShutterButton = ({
   className
 }: ShutterButtonProps) => {
   return (
-    <button
-      className={classNames(styles.ShutterButton, className)}
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={i18N("TAKE_PHOTO")}
-    />
+    <div className={classNames(styles.ShutterButtonWrapper, className)}>
+      <button
+        className={styles.ShutterButton}
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={i18N("TAKE_PHOTO")}
+      />
+    </div>
   )
 }
