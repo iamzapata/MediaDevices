@@ -1,5 +1,5 @@
-import { CameraErrorBoundary } from "./components/CameraError"
 import { CameraController } from "./Camera.controller"
+import { CameraErrorBoundary } from "./components/CameraError"
 
 export const CameraContainer = () => {
   return (

@@ -1,21 +1,20 @@
-import {
-  handleGetMediaDevicesError,
-  handleGetUserMediaError,
-  handleStopTracksError,
-  handleGetSupportedConstraintsError,
-  handleGetDeviceCapabilitiesError,
-  handleGetTrackConstraintsError,
-  handleGetCurrentTrackSettings,
-  handleApplyConstraintsError
-} from "./errorHandling"
-import {
-  requestMediaPermissions,
-  MediaPermissionsError
-} from "./requestMediaPermissions"
-
 import { AnalyticsTrackerService } from "../AnalyticsTrackerService"
 import { EVENT_NAMES } from "../AnalyticsTrackerService/eventNames"
 import { SentryService } from "../SentryService"
+import {
+  handleApplyConstraintsError,
+  handleGetCurrentTrackSettings,
+  handleGetDeviceCapabilitiesError,
+  handleGetMediaDevicesError,
+  handleGetSupportedConstraintsError,
+  handleGetTrackConstraintsError,
+  handleGetUserMediaError,
+  handleStopTracksError
+} from "./errorHandling"
+import {
+  MediaPermissionsError,
+  requestMediaPermissions
+} from "./requestMediaPermissions"
 
 class GetUserMediaError extends Error {
   constructor(message: string) {

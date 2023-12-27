@@ -1,5 +1,5 @@
+import { classNames } from "@lib/classNames"
 import styles from "./Button.component.module.css"
-import { classNames } from "../../../lib/classNames"
 
 interface ButtonProps {
   children: React.ReactNode

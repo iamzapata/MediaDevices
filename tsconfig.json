@@ -19,7 +19,24 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+
+    "baseUrl": "src",
+    "paths": {
+      "@lib/*": ["lib/*"],
+      "@components/*": ["components/*"],
+      "@ui/*": ["components/ui/*"],
+      "@layouts/*": ["components/layouts/*"],
+      "@utils/*": ["utils/*"],
+      "@screens/*": ["screens/*"],
+      "@store": ["store/*"],
+      "@hooks/*": ["hooks/*"],
+      "@api": ["api/*"],
+      "@services/*": ["services/*"],
+      "@Camera/*": ["screens/Camera/*"],
+      "@MediaDevicesInfo/*": ["screens/MediaDevicesInfo/*"],
+      "@ActivityTracer/*": ["screens/ActivityTracer/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

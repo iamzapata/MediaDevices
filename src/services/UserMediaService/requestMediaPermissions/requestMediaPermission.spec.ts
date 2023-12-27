@@ -1,7 +1,7 @@
 import {
-  requestMediaPermissions,
+  MediaPermissionsError,
   MediaPermissionsErrorTypes,
-  MediaPermissionsError
+  requestMediaPermissions
 } from "./requestMediaPermissions"
 
 const chromeUserAgent =

@@ -1,6 +1,6 @@
+import { AnalyticsTrackerService } from "@services/AnalyticsTrackerService"
+import { EVENT_NAMES } from "@services/AnalyticsTrackerService/eventNames"
 import { Component, ErrorInfo } from "react"
-import { AnalyticsTrackerService } from "../../../../services/AnalyticsTrackerService"
-import { EVENT_NAMES } from "../../../../services/AnalyticsTrackerService/eventNames"
 import { CameraError } from "./CameraError.component"
 
 export class CameraErrorBoundary extends Component {

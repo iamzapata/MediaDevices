@@ -1,8 +1,8 @@
-import { AnalyticsEvent, AnalyticsEventPayload } from "./types"
-import { AnalyticsEventName, EVENT_NAMES } from "./eventNames"
-import { ApplicationLoggerService } from "../AppliationLoggerService"
 import { API } from "../../api"
 import { keyMirror } from "../../lib/keyMirror"
+import { ApplicationLoggerService } from "../AppliationLoggerService"
+import { AnalyticsEventName, EVENT_NAMES } from "./eventNames"
+import { AnalyticsEvent, AnalyticsEventPayload } from "./types"
 
 const TrackingFailedReason = keyMirror({
   ERROR: null

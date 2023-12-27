@@ -1,11 +1,10 @@
-import { useEffect } from "react"
 import {
-  AnalyticsTrackerService,
-  AnalyticsEventPayload
-} from "../../services/AnalyticsTrackerService"
-import { EVENT_NAMES } from "../../services/AnalyticsTrackerService/eventNames"
-
+  AnalyticsEventPayload,
+  AnalyticsTrackerService
+} from "@services/AnalyticsTrackerService"
+import { EVENT_NAMES } from "@services/AnalyticsTrackerService/eventNames"
 import { useIsFirstRender } from "@uidotdev/usehooks"
+import { useEffect } from "react"
 
 export const useTrackScreenView = (
   screenName: AnalyticsEventPayload["screenName"]
@@ -21,6 +20,5 @@ export const useTrackScreenView = (
     const payload = { screenName }
 
     AnalyticsTrackerService.track(eventName, payload)
-
   }, [isNotFirstRender, screenName])
 }

@@ -1,5 +1,5 @@
-import { Button } from "../../../../components/ui/Button"
-import { i18N } from "../../../../lib/i18N"
+import { Button } from "@components/ui/Button"
+import { i18N } from "@lib/i18N"
 import styles from "./Desktop.overlay.module.css"
 
 interface DesktopLayoutProps {

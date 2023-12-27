@@ -1,4 +1,4 @@
-import { ShutterButton } from "../../../../components/ui/ShutterButton"
+import { ShutterButton } from "@components/ui/ShutterButton"
 import styles from "./Mobile.overlay.module.css"
 
 interface MobileLayoutProps {

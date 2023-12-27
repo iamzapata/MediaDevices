@@ -1,9 +1,9 @@
-import { forwardRef, Ref, ReactNode, HTMLAttributes } from "react"
+import { i18N } from "@lib/i18N"
 import * as AccordionUI from "@radix-ui/react-accordion"
-import classNames from "classnames"
 import { ChevronDownIcon } from "@radix-ui/react-icons"
+import classNames from "classnames"
+import { forwardRef, HTMLAttributes, ReactNode, Ref } from "react"
 import styles from "./Accordion.component.module.css"
-import { i18N } from "../../../lib/i18N"
 
 interface AccordionTriggerProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode

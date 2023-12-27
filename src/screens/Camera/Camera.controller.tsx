@@ -1,7 +1,7 @@
+import { OverlaySpinner } from "@ui/OverlaySpinner"
 import { useEffect, useState } from "react"
-import { CameraView } from "./Camera.view"
 import { useCameraModel } from "./camera.model"
-import { OverlaySpinner } from "../../components/ui/OverlaySpinner"
+import { CameraView } from "./Camera.view"
 
 const constraints = {
   video: true,

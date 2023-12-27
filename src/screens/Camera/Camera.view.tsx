@@ -1,9 +1,9 @@
+import { useIsMobileDevice } from "@hooks/useIsMobileDevice"
+import { useTrackScreenView } from "@hooks/useTrackScreenView"
+import styles from "./Camera.module.css"
 import { VideoPlayer } from "./components/VideoPlayer"
-import { useTrackScreenView } from "../../hooks/useTrackScreenView"
 import { DesktopOverlay } from "./overlays/Desktop"
 import { MobileOverlay } from "./overlays/Mobile/Mobile.overlay"
-import { useIsMobileDevice } from "../../hooks/useIsMobileDevice"
-import styles from "./Camera.module.css"
 
 interface CameraViewProps {
   stream: MediaStream | null

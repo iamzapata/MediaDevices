@@ -15,7 +15,7 @@ const ApplicationLoggerService = {
   },
 
   logError: (error: Error) => {
-    console.error("%c [error]", "color: red; font-weight: bold;", {error})
+    console.error("%c [error]", "color: red; font-weight: bold;", { error })
   }
 }
 

@@ -1,9 +1,8 @@
 import { create } from "zustand"
-import { devtools, persist, createJSONStorage } from "zustand/middleware"
-
+import { createJSONStorage, devtools, persist } from "zustand/middleware"
 import {
-  createCameraScreenSlice,
-  CameraScreenSlice
+  CameraScreenSlice,
+  createCameraScreenSlice
 } from "../screens/Camera/store"
 
 export const useGlobalStore = create<CameraScreenSlice>()(

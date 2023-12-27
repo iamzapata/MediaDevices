@@ -1,7 +1,7 @@
+import { AnalyticsTrackerService } from "@services/AnalyticsTrackerService"
+import { EVENT_NAMES } from "@services/AnalyticsTrackerService/eventNames"
 import { useRenderInfo } from "@uidotdev/usehooks"
 import { useEffect } from "react"
-import { AnalyticsTrackerService } from "../../services/AnalyticsTrackerService"
-import { EVENT_NAMES } from "../../services/AnalyticsTrackerService/eventNames"
 
 export const useTrackRenderInfo = (componentName: string) => {
   const info = useRenderInfo(componentName)

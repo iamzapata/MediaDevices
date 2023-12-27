@@ -1,9 +1,9 @@
-import { useTrackScreenView } from "../../../../hooks/useTrackScreenView"
+import { useTrackScreenView } from "@hooks/useTrackScreenView"
+import { i18N } from "@lib/i18N"
+import { MediaPermissionsError } from "@services/UserMediaService/requestMediaPermissions"
+import { Accordion } from "@ui/Accordion"
 import { Frown } from "react-feather"
-import { Accordion } from "../../../../components/ui/Accordion"
 import styles from "./CameraError.module.css"
-import { i18N } from "../../../../lib/i18N"
-import { MediaPermissionsError } from "../../../../services/UserMediaService/requestMediaPermissions"
 
 const ErrorHints = {
   SystemPermissionDenied: i18N("camera_error_hint_system_permission_denied"),

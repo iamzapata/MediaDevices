@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react"
-import { UserMediaService } from "../../services/UserMediaService"
-import { ApplicationLoggerService } from "../../services/AppliationLoggerService"
-import { useAsyncError } from "../../hooks/useAsyncError"
+import { useAsyncError } from "@hooks/useAsyncError"
+import { ApplicationLoggerService } from "@services/AppliationLoggerService"
+import { UserMediaService } from "@services/UserMediaService"
+import { useCallback, useState } from "react"
 
 export class NoStreamError extends Error {
   constructor(stream: unknown) {

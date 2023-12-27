@@ -1,14 +1,14 @@
 import "./App.css"
-import { Tabs } from "./components/ui/Tabs"
-import { MediaDevicesInfoContainer } from "./screens/MediaDevicesInfo"
-import { ActivityTraceContainer } from "./screens/ActivityTracer"
-import { AnalyticsTrackerService } from "./services/AnalyticsTrackerService"
-import { EVENT_NAMES } from "./services/AnalyticsTrackerService/eventNames"
-import { keyMirror } from "./lib/keyMirror"
-import { useIsMobileDevice } from "./hooks/useIsMobileDevice"
 import { DesktopLayout } from "./components/layouts/Desktop"
 import { MobileLayout } from "./components/layouts/Mobile"
+import { Tabs } from "./components/ui/Tabs"
+import { useIsMobileDevice } from "./hooks/useIsMobileDevice"
+import { keyMirror } from "./lib/keyMirror"
+import { ActivityTraceContainer } from "./screens/ActivityTracer"
 import { CameraContainer } from "./screens/Camera"
+import { MediaDevicesInfoContainer } from "./screens/MediaDevicesInfo"
+import { AnalyticsTrackerService } from "./services/AnalyticsTrackerService"
+import { EVENT_NAMES } from "./services/AnalyticsTrackerService/eventNames"
 
 const TabNames = keyMirror({
   Camera: null,

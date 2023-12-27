@@ -1,5 +1,5 @@
+import { i18N } from "@lib/i18N"
 import classNames from "classnames"
-import { i18N } from "../../../lib/i18N"
 import styles from "./ShutterButton.component.module.css"
 
 interface ShutterButtonProps {

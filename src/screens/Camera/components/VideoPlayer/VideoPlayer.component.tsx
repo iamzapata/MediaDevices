@@ -1,14 +1,14 @@
+import { useTrackRenderInfo } from "@hooks/useRenderInfo"
 import { SyntheticEvent, useRef } from "react"
-import { useTrackRenderInfo } from "../../../../hooks/useRenderInfo"
-import { useSetVideoStream } from "./hooks/useSetVideoStream"
 import {
-  onVideoErrorHandler,
   onVideoCanPlayThrough,
+  onVideoErrorHandler,
   onVideoLoadedMeataData,
   onVideoPlayHandler,
   onVideoRateChange,
   onVideoStalled
 } from "./handlers"
+import { useSetVideoStream } from "./hooks/useSetVideoStream"
 import styles from "./VideoPlayer.module.css"
 
 interface VideoPlayerProps {
