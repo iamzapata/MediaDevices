@@ -5,7 +5,7 @@ import { OverlaySpinner } from "../../components/ui/OverlaySpinner"
 
 const constraints = {
   video: true,
-  audio: true
+  audio: false
 }
 
 export const CameraController = () => {

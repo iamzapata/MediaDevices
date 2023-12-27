@@ -1,12 +1,17 @@
-import { forwardRef } from "react"
+import { forwardRef, Ref, ReactNode, HTMLAttributes } from "react"
 import * as AccordionUI from "@radix-ui/react-accordion"
 import classNames from "classnames"
 import { ChevronDownIcon } from "@radix-ui/react-icons"
 import styles from "./Accordion.component.module.css"
 import { i18N } from "../../../lib/i18N"
 
-const AccordionTrigger = forwardRef(
-  ({ children, className, ...props }, forwardedRef) => (
+interface AccordionTriggerProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode
+  className?: string
+}
+
+const AccordionTrigger = forwardRef<HTMLDivElement, AccordionTriggerProps>(
+  ({ children, ...props }, forwardedRef: Ref<HTMLDivElement>) => (
     <AccordionUI.Header className={styles.AccordionHeader}>
       <AccordionUI.Trigger
         className={styles.AccordionTrigger}
@@ -20,8 +25,13 @@ const AccordionTrigger = forwardRef(
   )
 )
 
-const AccordionContent = forwardRef(
-  ({ children, className, ...props }, forwardedRef) => (
+interface AccordionContentProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode
+  className?: string
+}
+
+const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(
+  ({ children, ...props }, forwardedRef: Ref<HTMLDivElement>) => (
     <AccordionUI.Content
       className={styles.AccordionContent}
       {...props}
